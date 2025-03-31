@@ -4,7 +4,7 @@ from transformers import pipeline
 unmasker = pipeline("fill-mask", model="bert-base-uncased")
 
 # Sentence with a masked word
-sentence = "Mens  [MASK] Jewellery"
+sentence = "Mens [MASK]"
 
 # Generate predictions
 results = unmasker(sentence, top_k=10)

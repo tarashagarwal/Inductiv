@@ -2,8 +2,9 @@
 __pycache__/
 *.py[cod]
 *$py.class
-.txt
-
+*.txt
+Finetune/bert-jewellery-model/
+Fulltrain/bert-from-scratch/
 # C extensions
 *.so
 
