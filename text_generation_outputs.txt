@@ -1,0 +1,82 @@
+Prompt: In the future, AI will
+
+
+=== Model: gpt2 ===
+Device: GPU
+
+--- Strategy 1 ---
+Params: {'temperature': 1.0, 'top_k': 50, 'top_p': 1.0}
+Time Taken: 0.29 sec
+Generated Text:
+In the future, AI will be integrated into the fabric of the American economy. The only thing keeping human beings from owning a large amount of AI is a small number that we can't control.
+
+There is another possibility the government could impose on
+
+--- Strategy 2 ---
+Params: {'temperature': 0.7, 'top_k': 40, 'top_p': 0.9}
+Time Taken: 0.17 sec
+Generated Text:
+In the future, AI will be able to learn from its surroundings and learn from its environment. This will allow us to create better products, which will lead to more intelligent machines.
+
+To learn more about AI, visit www.AI-Indust
+
+--- Strategy 3 ---
+Params: {'temperature': 0.9, 'top_k': 0, 'top_p': 0.92}
+Time Taken: 0.14 sec
+Generated Text:
+In the future, AI will be able to integrate any new functionality of 4K resolution in its processing pipelines.
+
+Powerful analytics
+
+With strong analytics algorithms running in the background, it is possible to simulate real and virtual situations and analyze data
+
+=== Model: EleutherAI/gpt-neo-125M ===
+Device: GPU
+
+--- Strategy 1 ---
+Params: {'temperature': 1.0, 'top_k': 50, 'top_p': 1.0}
+Time Taken: 0.18 sec
+Generated Text:
+In the future, AI will be able to recognize and recognize objects in real time, and it will be able to recognize and recognize objects in real time, and it will be able to recognize and recognize objects in real time, and it will be able
+
+--- Strategy 2 ---
+Params: {'temperature': 0.7, 'top_k': 40, 'top_p': 0.9}
+Time Taken: 0.18 sec
+Generated Text:
+In the future, AI will be able to recognize and recognize objects in real time, and it will be able to recognize and recognize objects in real time, and it will be able to recognize and recognize objects in real time, and it will be able
+
+--- Strategy 3 ---
+Params: {'temperature': 0.9, 'top_k': 0, 'top_p': 0.92}
+Time Taken: 0.18 sec
+Generated Text:
+In the future, AI will be able to recognize and recognize objects in real time, and it will be able to recognize and recognize objects in real time, and it will be able to recognize and recognize objects in real time, and it will be able
+
+=== Model: facebook/opt-350m ===
+Device: GPU
+
+--- Strategy 1 ---
+Params: {'temperature': 1.0, 'top_k': 50, 'top_p': 1.0}
+Time Taken: 0.28 sec
+Generated Text:
+In the future, AI will be able to do this.
+I'm not sure if you're joking or not.
+I'm not joking.  I'm not sure if you're joking or not.
+I'm not joking. I
+
+--- Strategy 2 ---
+Params: {'temperature': 0.7, 'top_k': 40, 'top_p': 0.9}
+Time Taken: 0.27 sec
+Generated Text:
+In the future, AI will be able to do this.
+I'm not sure if you're joking or not.
+I'm not joking.  I'm not sure if you're joking or not.
+I'm not joking. I
+
+--- Strategy 3 ---
+Params: {'temperature': 0.9, 'top_k': 0, 'top_p': 0.92}
+Time Taken: 0.27 sec
+Generated Text:
+In the future, AI will be able to do this.
+I'm not sure if you're joking or not.
+I'm not joking.  I'm not sure if you're joking or not.
+I'm not joking. I
