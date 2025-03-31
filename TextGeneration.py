@@ -3,7 +3,7 @@ import torch
 import time
 
 # Prompt
-prompt = "In the future, AI will"
+prompt = "We will be building a AI model for a Large Firm that"
 
 # Models to test
 models = [
