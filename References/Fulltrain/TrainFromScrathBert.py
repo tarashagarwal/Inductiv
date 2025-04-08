@@ -24,7 +24,7 @@ model = BertForMaskedLM(config)
 # -------------------------
 tokenizer = BertTokenizerFast.from_pretrained("bert-base-uncased")
 
-print("Tokenizer vocab size:", tokenizer.vocab_size)
+#print("Tokenizer vocab size:", tokenizer.vocab_size)
 
 # -------------------------
 # 3. Load Dataset
