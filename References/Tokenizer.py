@@ -3,6 +3,7 @@ from transformers import AutoTokenizer
 tokenizer = AutoTokenizer.from_pretrained("bert-base-cased")
 
 sequence = "Using a Transformer network is not less simple but more simple"
+print("Padding ID " + str(tokenizer.pad_token_id))
 tokens = tokenizer.tokenize(sequence)
 
 print(tokens)
