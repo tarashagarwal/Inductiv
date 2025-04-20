@@ -1,5 +1,7 @@
 #Inductiv
 
+![Architecture](https://github.com/user-attachments/assets/eeff3da1-5d82-4f02-8e4c-13116851ebdf)
+
 Inductiv is an experimental tool currently under development, designed to create a general-purpose recommendation system. The goal is to support training on a generic format of input datasets and leverage features stored in a local database.
 
 How It Works
@@ -31,4 +33,4 @@ Key Features
     You will need to setup accelerate config that we are using in traing of the models.
     Set fp16=True and good optimizer
 
-    ![Architecture](https://github.com/user-attachments/assets/eeff3da1-5d82-4f02-8e4c-13116851ebdf)
+   
