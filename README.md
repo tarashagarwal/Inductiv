@@ -31,4 +31,4 @@ Key Features
     You will need to setup accelerate config that we are using in traing of the models.
     Set fp16=True and good optimizer
 
-    ![Architecture](./inductiv.jpeg)
+    ![Architecture](https://github.com/tarashagarwal/Inductive/blob/main/Inductiv.jpeg)
