@@ -25,3 +25,10 @@ Key Features
     Retrieval-Augmented Generation (RAG) for intelligent querying
 
     Easily extendable and fine-tunable
+
+
+    # 
+    You will need to setup accelerate config that we are using in traing of the models.
+    Set fp16=True and good optimizer
+
+    ![Architecture](inductiv.jpeg)
