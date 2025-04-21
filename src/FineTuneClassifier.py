@@ -29,7 +29,7 @@ with open('../TrainData/InductivClassifierTrain.json', 'r') as f:
 dataset = load_dataset("tarashagarwal/inductiv-binary-classifier")
 
 def tokenize_fn(examples):
-    return tokenizer(examples['text'], truncation=True, padding="max_length", max_length=128)
+    return tokenizer(examples['text'], truncation=True, padding="max_length", max_length=256)
 
 tokenized_dataset = dataset["train"].map(tokenize_fn, batched=True)
 
