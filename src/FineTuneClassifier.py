@@ -12,7 +12,7 @@ from huggingface_hub import login
 import json
 
 # 1. Login to Hugging Face Hub
-login(token='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') # paste your token from https://huggingface.co/settings/tokens
+login(token='') # paste your token from https://huggingface.co/settings/tokens
 
 # 2. Load Pretrained Model and Tokenizer
 model_checkpoint = "MoritzLaurer/DeBERTa-v3-large-mnli-fever-anli-ling-wanli"

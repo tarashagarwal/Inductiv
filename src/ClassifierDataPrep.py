@@ -5,6 +5,6 @@ df = pd.read_json("../TrainData/InductivClassifierTrain.json")
 
 dataset = Dataset.from_pandas(df)
 
-login(token='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')
+login(token='')
 
 dataset.push_to_hub("tarashagarwal/inductiv-binary-classifier")
