@@ -9,9 +9,10 @@ from transformers import (
     Trainer
 )
 from huggingface_hub import login
+import json
 
 # 1. Login to Hugging Face Hub
-login()  # paste your token from https://huggingface.co/settings/tokens
+login(token='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') # paste your token from https://huggingface.co/settings/tokens
 
 # 2. Load Pretrained Model and Tokenizer
 model_checkpoint = "MoritzLaurer/DeBERTa-v3-large-mnli-fever-anli-ling-wanli"
@@ -22,22 +23,21 @@ model = AutoModelForSequenceClassification.from_pretrained(
 )
 
 # 3. Example Dataset for Fine-Tuning
-examples = [
-    {"text": "What is the weather today?", "label": 0},  # 0 = General
-    {"text": "Which courses are taught by Professor Smith?", "label": 1},  # 1 = Course
-    {"text": "What are the hobbies of Prof. John?", "label": 2},  # 2 = Interest
-]
+with open('../TrainData/InductivClassifierTrain.json', 'r') as f:
+    examples = json.load(f)
 
-dataset = Dataset.from_dict({
-    "text": [e["text"] for e in examples],
-    "label": [e["label"] for e in examples]
-})
+dataset = load_dataset("tarashagarwal/inductiv-binary-classifier")
+
+def tokenize_fn(examples):
+    return tokenizer(examples['text'], truncation=True, padding="max_length", max_length=128)
+
+tokenized_dataset = dataset["train"].map(tokenize_fn, batched=True)
 
 # 4. Tokenization Function
-def preprocess_function(examples):
-    return tokenizer(examples['text'], truncation=True, padding="max_length", max_length=256)
+# def preprocess_function(examples):
+#     return tokenizer(examples['text'], truncation=True, padding="max_length", max_length=256)
 
-tokenized_dataset = dataset.map(preprocess_function, batched=True)
+# tokenized_dataset = dataset.map(preprocess_function, batched=True)
 
 # 5. Set up Training Arguments
 repo_name = "tarashagarwal/inductive-classifier"
@@ -65,5 +65,7 @@ trainer = Trainer(
 )
 
 # 7. Fine-tune and Push
+print("Starting Training")
 trainer.train()
+print("Training Complete. Now pushing to the repository")
 trainer.push_to_hub()
