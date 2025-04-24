@@ -62,7 +62,7 @@ tokenized_dataset = dataset.map(tokenize_and_align_labels, batched=False)
 data_collator = DataCollatorForTokenClassification(tokenizer)
 
 # 7. Set TrainingArguments (using Accelerate backend)
-repo_name = "tarashagarwal/inductiv-ner"
+repo_name = "tarashagarwal/inductiv-"
 
 training_args = TrainingArguments(
     output_dir="./results",

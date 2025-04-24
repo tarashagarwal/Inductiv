@@ -10,17 +10,21 @@ from transformers import (
 )
 from huggingface_hub import login
 import json
+import os
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 # 1. Login to Hugging Face Hub
-login(token='') # paste your token from https://huggingface.co/settings/tokens
+login(token=os.getenv("HUGGINGFACE_TOKEN")) # paste your token from https://huggingface.co/settings/tokens
 
 # 2. Load Pretrained Model and Tokenizer
-model_checkpoint = "MoritzLaurer/DeBERTa-v3-large-mnli-fever-anli-ling-wanli"
+model_checkpoint = "roberta-base"
 tokenizer = AutoTokenizer.from_pretrained(model_checkpoint)
-model = AutoModelForSequenceClassification.from_pretrained(
-    model_checkpoint,
-    num_labels=3  # You can change this based on your task (e.g., "general", "course", "other")
-)
+tokenizer = AutoTokenizer.from_pretrained("roberta-base")
+model = AutoModelForSequenceClassification.from_pretrained("roberta-base", num_labels=2)
 
 # 3. Example Dataset for Fine-Tuning
 with open('../TrainData/InductivClassifierTrain.json', 'r') as f:
@@ -33,6 +37,13 @@ def tokenize_fn(examples):
 
 tokenized_dataset = dataset["train"].map(tokenize_fn, batched=True)
 
+
+train_test_split = tokenized_dataset.train_test_split(test_size=0.1)
+
+train_dataset = train_test_split["train"]
+eval_dataset = train_test_split["test"]
+
+
 # 4. Tokenization Function
 # def preprocess_function(examples):
 #     return tokenizer(examples['text'], truncation=True, padding="max_length", max_length=256)
@@ -44,23 +55,29 @@ repo_name = "tarashagarwal/inductive-classifier"
 
 training_args = TrainingArguments(
     output_dir="./results",
-    evaluation_strategy="no",
+    evaluation_strategy="epoch",
     save_strategy="epoch",
-    learning_rate=2e-5,
-    per_device_train_batch_size=4,
-    num_train_epochs=3,
+    learning_rate=2e-5,              # smaller LR
+    per_device_train_batch_size=8,   # bigger batch
+    per_device_eval_batch_size=8,
+    num_train_epochs=2,
     weight_decay=0.01,
     push_to_hub=True,
-    hub_model_id=repo_name,
+    hub_model_id="tarashagarwal/inductiv-binary-classifier",
     report_to="none",
-    optim="adamw_torch_fused",  # Accelerate optimized
+    optim="adamw_torch_fused",
+    fp16=True,                       # enable mixed precision
+    load_best_model_at_end=True,
+    metric_for_best_model="eval_loss",
+    greater_is_better=False
 )
 
 # 6. Trainer Setup
 trainer = Trainer(
     model=model,
     args=training_args,
-    train_dataset=tokenized_dataset,
+    train_dataset=train_dataset,
+    eval_dataset=eval_dataset,
     tokenizer=tokenizer,
 )
 

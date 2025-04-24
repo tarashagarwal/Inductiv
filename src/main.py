@@ -1,13 +1,13 @@
 from transformers import pipeline
 
-classifier = pipeline("zero-shot-classification", model="facebook/bart-large-mnli")
+# classifier = pipeline("zero-shot-classification", model="facebook/bart-large-mnli")
 
-labels = ["general", "course-related"]
+# labels = ["general", "course-related"]
 
-query = "Hello, Did not see you in class today?"
+# query = "Hello, Did not see you in class today?"
 
-result = classifier(query, candidate_labels=labels)
-print(result)
+# result = classifier(query, candidate_labels=labels)
+# print(result)
 
 
 # 1. Load the Roberta Large NER Model
@@ -28,10 +28,33 @@ print(result)
 #     print(f"Entity: {entity['word']} | Label: {entity['entity_group']} | Score: {entity['score']:.2f}")
 
 
-classifier = pipeline("zero-shot-classification", model="MoritzLaurer/DeBERTa-v3-large-mnli-fever-anli-ling-wanli")
+# classifier = pipeline("zero-shot-classification", model="tarashagarwal/inductiv-binary-classifier")
 
-candidate_labels = ["course-related", "general", "sports", "weather"]
-sequence_to_classify = "Can you give description for CSCI2200?"
+# candidate_labels = ["course-related", "general", "sports", "weather"]
+# sequence_to_classify = "Can you give description for CSCI2200?"
 
-result = classifier(sequence_to_classify, candidate_labels)
-print(result)
+# result = classifier(sequence_to_classify, candidate_labels)
+# print(result)
+
+
+classifier = pipeline(
+    "text-classification",
+    model="tarashagarwal/inductiv-binary-classifier",  # replace with your actual repo name
+    tokenizer="tarashagarwal/inductiv-binary-classifier"
+)
+
+def test_query(text):
+    result = classifier(text)[0]
+    label = result["label"]
+    score = result["score"]
+    print(f"Prediction: {label}, Confidence: {score:.2f}")
+
+test_query("Who teaches Machine Learning this fall?")
+test_query("What's the weather like in Paris?")
+test_query("Guruparan, A;Mukhopadhyay si the instructor for Fall for BADM2200?")
+test_query("Asish K for Fall for BADM2200? in summer")
+test_query("What is the univeristy ranking?")
+test_query("What are some some hot topics?")
+test_query("Is BADM576 taught this semester?")
+
+
