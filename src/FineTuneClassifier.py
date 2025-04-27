@@ -27,8 +27,8 @@ tokenizer = AutoTokenizer.from_pretrained("roberta-base")
 model = AutoModelForSequenceClassification.from_pretrained("roberta-base", num_labels=2)
 
 # 3. Example Dataset for Fine-Tuning
-with open('../TrainData/InductivClassifierTrain.json', 'r') as f:
-    examples = json.load(f)
+# with open('../TrainData/InductivClassifierTrain.json', 'r') as f:
+#     examples = json.load(f)
 
 dataset = load_dataset("tarashagarwal/inductiv-binary-classifier")
 
