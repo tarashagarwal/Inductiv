@@ -2,7 +2,6 @@
 __pycache__/
 *.py[cod]
 *$py.class
-*.txt
 Finetune/bert-jewellery-model/
 Fulltrain/bert-from-scratch/
 # C extensions
@@ -177,3 +176,4 @@ cython_debug/
 /src/results/
 TrainData/
 .env
+src/bert-ner-custom/

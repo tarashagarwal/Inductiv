@@ -1,0 +1,10 @@
+pandas
+datasets
+huggingface_hub
+python-dotenv
+faiss-cpu
+sentence-transformers==3.2.1
+transformers==4.44.2
+accelerate>=0.21.0
+#################
+smolagents[litellm]>=0.1.0
