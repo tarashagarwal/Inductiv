@@ -28,6 +28,7 @@ def get_travel_duration(start_location: str, destination_location: str, transpor
         )
         if not routes_result:
             return "No route found between these places with the required transportation mode."
+        print(routes_result)
         return routes_result[0]["legs"][0]["duration"]["text"]
     except Exception as e:
         print(e)
