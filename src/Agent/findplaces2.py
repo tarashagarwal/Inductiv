@@ -1,5 +1,8 @@
 import ollama
-from smolagents import CodeAgent
+import os, requests
+from typing import Optional
+from ddgs import DDGS
+from smolagents import CodeAgent, HfApiModel, tool
 
 # Try to use smolagents' own ChatMessage type if available; else fallback.
 try:
@@ -68,7 +71,30 @@ class OllamaModel:
         text = res["message"]["content"]
         return ChatMessage(role="assistant", content=text)
 
+@tool
+def duckduckgo_search(query: str, num_results: int = 5) -> str:
+    """
+    Search DuckDuckGo for a query and extract the most relevant information.
+    Search for temperature in Fahrenheit or Celsius.
+    If it is in Celsius, convert to Fahrenheit.
+
+    Args:
+        query: The search query string.
+        num_results: Number of results to return (default 5).
+
+    Result: Give temperature as {Temp}°F or {Temp}°C.
+    """
+    with DDGS() as ddgs:
+        results = ddgs.text(query, max_results=num_results)
+        output = []
+        for r in results:
+            title = r.get("title")
+            link = r.get("href")
+            snippet = r.get("body")
+            output.append(f"{title} ({link}) - {snippet}")
+        return "\n".join(output) if output else "No results found."
+
 # usage
 model = OllamaModel("qwen2:7b")
-agent = CodeAgent(tools=[], model=model)
-print(agent.run("Plan a 1-day Paris bicycle itinerary with 5–6 stops and times."))
+agent = CodeAgent(tools=[duckduckgo_search], model=model)
+print(agent.run("I need to find the current temperature in Champaign"))  # example usage
